@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq-headless
+  namespace: demo
+spec:
+  clusterIP: None
+  ports:
+    - name: amqp
+      port: 5672
+      protocol: TCP
+      targetPort: 5672
+    - name: http
+      port: 15672
+      protocol: TCP
+      targetPort: 15672
+    - name: prometheus
+      port: 15692
+      protocol: TCP
+      targetPort: 15692
+  selector:
+    app: rabbitmq
